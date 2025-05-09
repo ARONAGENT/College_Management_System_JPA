@@ -51,13 +51,15 @@ This project is a Spring Boot application that demonstrates JPA mappings for a C
 
 **a)Many Professors have many Students**
 
-![06 ManyToMany(many students have many subjects )](https://github.com/user-attachments/assets/682c8223-3140-41bf-af30-7d1d38ce3706)
+![05 ManyToMany(many professors have many students)](https://github.com/user-attachments/assets/28c10d98-e014-41db-8fc1-3890003b7539)
+
+
 
 
 **b)many students have many subjects**
 
-![05 ManyToMany(many professors have many students)](https://github.com/user-attachments/assets/28c10d98-e014-41db-8fc1-3890003b7539)
 
+![06 ManyToMany(many students have many subjects )](https://github.com/user-attachments/assets/682c8223-3140-41bf-af30-7d1d38ce3706)
 
 
 ## How to Run the Project
