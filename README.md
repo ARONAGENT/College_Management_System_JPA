@@ -1,100 +1,227 @@
-# Spring Boot JPA Mappings - College Management System
+# College Management System
 
-## Project Description
-This project is a Spring Boot application that demonstrates JPA mappings for a College Management System. It covers the implementation of entity relationships using Hibernate and Spring Data JPA. The system consists of four main tables: Admission Records, Students, Professors, and Subjects, showcasing different types of entity mappings such as One-to-One, One-to-Many, and Many-to-Many relationships. The project also includes database schema structure, table structure, and mapping images for reference.
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen.svg)](https://spring.io/projects/spring-boot)
+[![Spring Data JPA](https://img.shields.io/badge/Spring%20Data%20JPA-3.x-green.svg)](https://spring.io/projects/spring-data-jpa)
+[![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://www.oracle.com/java/)
+[![Hibernate](https://img.shields.io/badge/Hibernate-6.x-blue.svg)](https://hibernate.org/)
+[![MySQL](https://img.shields.io/badge/MySQL-8.x-blue.svg)](https://www.mysql.com/)
+[![Maven](https://img.shields.io/badge/Maven-3.x-red.svg)](https://maven.apache.org/)
 
-## Entities and Relationships
+## 📋 Project Overview
 
-### 1. Admission Records
-- Represents student admission details
-- Maintains relationships with Students and Subjects
+This Spring Boot application demonstrates comprehensive JPA mappings for a College Management System. It showcases entity relationships using Hibernate and Spring Data JPA, implementing various mapping types including One-to-One, One-to-Many, and Many-to-Many relationships across four main entities.
 
-### 2. Students
-- Stores student information
-- One-to-Many relationship with Admission Records
-- Many-to-Many relationship with Subjects
+## 🏗️ System Architecture
 
-### 3. Professors
-- Stores professor details
-- One-to-Many relationship with Subjects
+The system is built around four core entities that represent a typical college management structure:
 
-### 4. Subjects
-- Represents courses available in the system
-- Many-to-Many relationship with Students
-- One-to-Many relationship with Professors
+- **Admission Records** - Student enrollment and admission details
+- **Students** - Student information and academic records
+- **Professors** - Faculty information and teaching assignments
+- **Subjects** - Course catalog and curriculum management
 
-## Images Included
-- **Database Schema Structure**: Overview of the database design
-  
-  ![image](https://github.com/user-attachments/assets/4606b2ea-d7a2-4a18-83cc-f0dd3a8e2c41)
-  
+## 📊 Entity Relationships
 
-- **Database Table Structure**: Details of table columns and relationships
-  
- ![07 Student_Professor_subject_record(tables)](https://github.com/user-attachments/assets/316ce69e-1e59-4515-b9ab-b360dba567a0)
-![08 Student_Professor_subject_record(tables)](https://github.com/user-attachments/assets/685282d9-994b-47a7-9db3-8408a7013d7c)
+### Database Schema Overview
+![Database Schema Structure](https://github.com/user-attachments/assets/4606b2ea-d7a2-4a18-83cc-f0dd3a8e2c41)
 
+### Relationship Mappings
 
-- **One-to-One Mapping**: One student have one Admission Record
-  
- ![03 OneToOne(one student have one admission Record)](https://github.com/user-attachments/assets/bb777f90-f80e-4d24-836e-e30bb59363ae)
- 
+#### 1. One-to-One Mapping
+**Student ↔ Admission Record**
+- Each student has exactly one admission record
+- Bidirectional relationship with foreign key constraint
 
-- **One-to-Many & Many-to-Many Mapping**:
-  
-**-i)One to Many Mappings  : One Professor teaches many subjects**
+![One-to-One Mapping](https://github.com/user-attachments/assets/bb777f90-f80e-4d24-836e-e30bb59363ae)
 
- ![04 one to many (one professor teaches many subjects)](https://github.com/user-attachments/assets/05c51504-0550-41df-843c-5706fd494670)
+#### 2. One-to-Many Mapping
+**Professor → Subjects**
+- One professor can teach multiple subjects
+- Unidirectional relationship from Professor to Subject
 
+![One-to-Many Mapping](https://github.com/user-attachments/assets/05c51504-0550-41df-843c-5706fd494670)
 
-**ii) Many To Many Mappings-**
+#### 3. Many-to-Many Mappings
 
-**a)Many Professors have many Students**
+**a) Professors ↔ Students**
+- Many professors can teach many students
+- Junction table for relationship management
 
-![05 ManyToMany(many professors have many students)](https://github.com/user-attachments/assets/28c10d98-e014-41db-8fc1-3890003b7539)
+![Many-to-Many: Professors-Students](https://github.com/user-attachments/assets/28c10d98-e014-41db-8fc1-3890003b7539)
 
+**b) Students ↔ Subjects**
+- Many students can enroll in many subjects
+- Junction table for enrollment tracking
 
+![Many-to-Many: Students-Subjects](https://github.com/user-attachments/assets/682c8223-3140-41bf-af30-7d1d38ce3706)
 
+## 🗄️ Database Structure
 
-**b)many students have many subjects**
+### Table Overview
+![Database Tables Structure 1](https://github.com/user-attachments/assets/316ce69e-1e59-4515-b9ab-b360dba567a0)
+![Database Tables Structure 2](https://github.com/user-attachments/assets/685282d9-994b-47a7-9db3-8408a7013d7c)
 
+### Core Tables
+- `students` - Student master data
+- `professors` - Faculty information
+- `subjects` - Course catalog
+- `admission_records` - Enrollment details
+- `student_subject` - Many-to-many junction table
+- `professor_student` - Many-to-many junction table
 
-![06 ManyToMany(many students have many subjects )](https://github.com/user-attachments/assets/682c8223-3140-41bf-af30-7d1d38ce3706)
+## 🚀 Getting Started
 
+### Prerequisites
 
-## How to Run the Project
-1. Clone the repository:
+Before running this application, ensure you have the following installed:
+
+- **Java 21** or higher
+- **Maven 3.6+**
+- **MySQL 8.0+** (Cloud or Local)
+- **IntelliJ IDEA** (recommended IDE)
+- **DBeaver** (for database management)
+
+### Installation & Setup
+
+1. **Clone the Repository**
    ```bash
    git clone https://github.com/ARONAGENT/College_Management_System.git
-   cd college-management-system
+   cd College_Management_System
    ```
-2. Configure database properties in `application.properties`:
+
+2. **Database Configuration**
+   
+   Update `src/main/resources/application.properties`:
    ```properties
+   # Database Configuration
    spring.datasource.url=jdbc:mysql://your-cloud-db-url:3306/college_db
    spring.datasource.username=your-username
    spring.datasource.password=your-password
+   spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+   
+   # Hibernate Configuration
    spring.jpa.hibernate.ddl-auto=update
+   spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
+   spring.jpa.show-sql=true
+   spring.jpa.properties.hibernate.format_sql=true
+   
+   # Server Configuration
+   server.port=8080
    ```
-3. Build the project using Maven:
+
+3. **Build the Project**
    ```bash
    mvn clean install
    ```
-4. Run the application:
+
+4. **Run the Application**
    ```bash
    mvn spring-boot:run
    ```
-5. Access the MySQL database via MySql Shell
+   
+   Alternative using Java:
+   ```bash
+   java -jar target/college-management-system-1.0.0.jar
+   ```
 
-## Prerequisites
-- Java 21
-- Maven
-- IntelliJ IDEA
-- MySQL Cloud Database
-- DBeaver for database management
+5. **Access the Application**
+   - Application URL: `http://localhost:8080`
+   - Database: Connect via MySQL Shell or DBeaver
 
-## Contributing
-Feel free to fork this repository and contribute with pull requests to improve the project.
+## 🛠️ Technology Stack
 
-## License
-This project is open-source and available under the MIT License.
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| **Spring Boot** | 3.x | Application Framework |
+| **Spring Data JPA** | 3.x | Data Access Layer |
+| **Hibernate** | 6.x | ORM Framework |
+| **MySQL** | 8.x | Database |
+| **Maven** | 3.x | Build Tool |
+| **Java** | 21 | Programming Language |
 
+## 📁 Project Structure
+
+```
+src/
+├── main/
+│   ├── java/
+│   │   └── com/example/collegemanagement/
+│   │       ├── entity/           # JPA Entities
+│   │       ├── repository/       # Data Access Layer
+│   │       ├── service/          # Business Logic
+│   │       ├── controller/       # REST Controllers
+│   │       └── CollegeManagementApplication.java
+│   └── resources/
+│       ├── application.properties
+│       └── data.sql             # Sample data (optional)
+└── test/                        # Unit tests
+```
+
+## 🔧 Key Features
+
+- **Comprehensive JPA Mappings**: All major relationship types implemented
+- **Hibernate Integration**: Advanced ORM features and optimizations
+- **Database Agnostic**: Easily configurable for different databases
+- **RESTful Architecture**: Clean API design following REST principles
+- **Transaction Management**: Proper transaction handling across operations
+- **Error Handling**: Robust exception handling and validation
+
+## 📖 API Documentation
+
+The application exposes REST endpoints for managing:
+
+- `/api/students` - Student management
+- `/api/professors` - Professor management  
+- `/api/subjects` - Subject management
+- `/api/admissions` - Admission record management
+
+## 🧪 Testing
+
+Run the test suite:
+```bash
+mvn test
+```
+
+Run with coverage report:
+```bash
+mvn test jacoco:report
+```
+
+## 🤝 Contributing
+
+We welcome contributions! Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+### Contribution Guidelines
+- Follow Java coding conventions
+- Write unit tests for new features
+- Update documentation as needed
+- Ensure all tests pass before submitting
+
+## 👥 Authors
+
+- **[ARONAGENT](https://github.com/ARONAGENT)** - Initial work and project maintainer
+
+## 🙏 Acknowledgments
+
+- Spring Boot team for the excellent framework
+- Hibernate team for the powerful ORM
+- MySQL for the reliable database system
+- Open source community for continuous inspiration
+
+## 📞 Support
+
+If you encounter any issues or have questions:
+
+1. Check the [Issues](https://github.com/ARONAGENT/College_Management_System/issues) page
+2. Create a new issue with detailed information
+3. Contact the maintainer via GitHub
+
+---
+
+⭐ **Star this repository if you find it helpful!**
